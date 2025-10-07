@@ -1,26 +1,24 @@
 /**
- * @SofiDev Esto es JSDOC, si consideras que puede ser complicado solo borralo, es un comentario, no afectará en nada
- * @typedef PortafolioData
- * @property {string} imgSrc Url de la imagen
- * @property {string} title Titulo de la tarjeta
- * @property {string[]} skills Array con tus habilidades ej: ['React', 'CSS', 'JavaScript']
- * @property {string} descripcion La descripcion de la tarjeta
- * @property {string} demoURL Url de una pagina de demostración
- * @property {string} repoURL Url del repositorio, ej: https://github.com/usuario/repo
- * @property {string} anim La animación que se ejecutará cuando se cargue la tarjeta, ej: fade-up, fade-right, fade-left, fade-down
- * @property {number} averageBrightness Cuanto brillo tendrá el color de fondo de la tarjeta, ej: 0.1
+ * @typedef PortfolioData
+ * @property {string} imgSrc - URL of the image
+ * @property {string} title - Title of the card
+ * @property {string[]} skills - Array of your skills, e.g., ['React', 'CSS', 'JavaScript']
+ * @property {string} description - Description of the card
+ * @property {string} demoURL - URL of a demo page
+ * @property {string} repoURL - URL of the repository, e.g., https://github.com/user/repo
+ * @property {string} anim - Animation that will play when the card loads, e.g., fade-up, fade-right, fade-left, fade-down
+ * @property {number} averageBrightness - Brightness level of the card's background color, e.g., 0.1
  */
 
 /**
- * @SofiDev Esto es JSDOC, si consideras que puede ser complicado solo borralo, es un comentario, no afectará en nada
- * @type {PortafolioData[]}
+ * @type {PortfolioData[]}
  */
-export const portafolioData = [
+export const portfolioData = [
 	{
 		imgSrc: 'https://dt2sdf0db8zob.cloudfront.net/wp-content/uploads/2021/06/copy-of-the-6-best-restaurant-website-templates-1.png',
 		title: 'Restaurant',
 		skills: ['React', 'StyledComponents'],
-		descripcion:
+		description:
 			'Laboris ex laboris mollit esse fugiat aute cillum nostrud enim dolor sit. Reprehenderit et non nulla irure aute nostrud commodo aute.',
 		demoURL: '',
 		repoURL: '',
@@ -30,53 +28,23 @@ export const portafolioData = [
 		imgSrc: 'https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/299377097/original/7eb7dcebe244fcf5ad75d92b0969fc116946bd57/create-professional-amd-responsive-wordpress-website.jpg',
 		title: 'E-commerce',
 		skills: ['JavaScript', 'Bootstrap'],
-		descripcion:
-			' Laboris ex laboris mollit esse fugiat aute cillum nostrud enim dolor sit. Reprehenderit et non nulla irure aute nostrud commodo aute.',
+		description:
+			'Laboris ex laboris mollit esse fugiat aute cillum nostrud enim dolor sit. Reprehenderit et non nulla irure aute nostrud commodo aute.',
 		demoURL: '',
 		repoURL: '',
 		anim: 'fade-up',
 		averageBrightness: 0.1,
 	},
 	{
-		imgSrc: 'https://i0.wp.com/themes.svn.wordpress.org/cafe-cafeteria/1.5.3/screenshot.png',
-		title: 'Coffe Store',
-		skills: ['React', 'CSS'],
-		descripcion:
-			'Laboris ex laboris mollit esse fugiat aute cillum nostrud enim dolor sit. Reprehenderit et non nulla irure aute nostrud commodo aute.Laboris ex laboris mollit esse fugiat aute cillum nostrud enim dolor sit. Reprehenderit et non nulla irure aute nostrud commodo aute.Laboris ex laboris mollit esse fugiat aute cillum nostrud enim dolor sit. Reprehenderit et non nulla irure aute nostrud commodo aute.',
-		demoURL: '',
-		repoURL: '',
-		anim: 'fade-left',
-	},
-	{
-		imgSrc: 'https://www.corse.mx/cdn/shop/files/tienda_lenceria-lenceria-hot_sale-ofertas-mexico-lenceria_seyx-encaje-corse_mx-corse_lenceria_1200_x_560_px_13.png?v=1712270274&width=1500',
-		title: 'Coffe Store',
-		skills: ['React', 'CSS'],
-		descripcion:
-			'Laboris ex laboris mollit esse fugiat aute cillum nostrud enim dolor sit. Reprehenderit et non nulla irure aute nostrud commodo aute.Laboris ex laboris mollit esse fugiat aute cillum nostrud enim dolor sit. Reprehenderit et non nulla irure aute nostrud commodo aute.Laboris ex laboris mollit esse fugiat aute cillum nostrud enim dolor sit. Reprehenderit et non nulla irure aute nostrud commodo aute.',
-		demoURL: '',
-		repoURL: '',
-		anim: 'fade-left',
-	},
-	{
-		imgSrc: 'https://i0.wp.com/themes.svn.wordpress.org/cafe-cafeteria/1.5.3/screenshot.png',
-		title: 'Coffe Store',
-		skills: ['React', 'CSS'],
-		descripcion:
-			'Laboris ex laboris mollit esse fugiat aute cillum nostrud enim dolor sit. Reprehenderit et non nulla irure aute nostrud commodo aute.Laboris ex laboris mollit esse fugiat aute cillum nostrud enim dolor sit. Reprehenderit et non nulla irure aute nostrud commodo aute.Laboris ex laboris mollit esse fugiat aute cillum nostrud enim dolor sit. Reprehenderit et non nulla irure aute nostrud commodo aute.',
-		demoURL: '',
-		repoURL: '',
-		anim: 'fade-left',
-	},
-	{
-		imgSrc: 'https://dt2sdf0db8zob.cloudfront.net/wp-content/uploads/2021/06/copy-of-the-6-best-restaurant-website-templates-1.png',
-		title: 'Restaurant',
-		skills: ['React', 'StyledComponents'],
-		descripcion:
+		imgSrc: 'https://www.websitetalkingheads.com/wp-content/uploads/2020/06/real-estate-website-design.png',
+		title: 'Real Estate',
+		skills: ['Astro', 'Tailwind'],
+		description:
 			'Laboris ex laboris mollit esse fugiat aute cillum nostrud enim dolor sit. Reprehenderit et non nulla irure aute nostrud commodo aute.',
 		demoURL: '',
 		repoURL: '',
-		anim: 'fade-right',
-	}
+		anim: 'fade-left',
+	},
 ];
 
 const skillIcons = {
@@ -91,14 +59,9 @@ const skillIcons = {
 };
 
 /**
- * @description Se mapea el portafolioData para que tenga los iconos de las habilidades
- * 	Puedes ver Array.map en https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+ * @description Maps portfolioData to include skill icons
  */
-export const getPortafolioData = portafolioData.map((item) => {
-	return {
-		// Se coloca todo el contenido previo del item
-		...item,
-		// Se cambian las skills por los iconos correspondientes
-		skills: item.skills.map((skill) => skillIcons[skill]),
-	};
-});
+export const getPortfolioData = portfolioData.map((item) => ({
+	...item,
+	skills: item.skills.map((skill) => skillIcons[skill]),
+}));

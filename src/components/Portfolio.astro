@@ -1,28 +1,43 @@
 ---
 import Title from './atoms/Title.astro';
-import { getPortafolioData} from "../components/data/portfolioData.js"
+import { getPortfolioData} from "../components/data/portfolioData.js"
 import Card from './card-portfolio/CardPortfolio.astro';
 ---
 
 <section
-	id="portafolio"
+	id="portfolio"
 	class="flex flex-col w-full  justify-center items-center h-auto min-h-[100dvh]  "
 >
 	<div class="portfolio__container">
-		<Title contenido="Portafolio" />
+		<Title contenido="Portfolio" />
+		<p>As Heard on CBS Sports</p>
 		<div class="portfolio__elements">
-			{getPortafolioData.map((props) => <Card {...props} />)}
+			
+			<iframe id="disco-playlist-17031939" name="disco-playlist-17031939" allowfullscreen frameborder="0" class="disco-embed" src="https://ithilien-songs.disco.ac/e/p/17031939?download=false&s=-TSGSeuL0-JV5PtRck7759i7KzQ%3AsZ9rsTBD&artwork=true&color=%234B6CD3&theme=dark" width="480" height="395"></iframe>
+		</div>
+		<p>Rock Reel</p>
+		<div class="portfolio__elements">
+			
+			<iframe id="disco-playlist-25346737" name="disco-playlist-25346737" allowfullscreen frameborder="0" class="disco-embed" src="https://ithilien-songs.disco.ac/e/p/25346737?download=false&s=l-_dyX2AfzOY1f7rpWplbFq_VSY%3APIdWblCI&artwork=true&color=%234B6CD3&theme=dark" width="480" height="395"></iframe>
 		</div>
 	</div>
 </section>
 
 <style>
+	.portfolio__container {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 1rem;
+		margin-top: 2rem;
+		text-align: left;
+	}
 	.portfolio__elements {
-		max-width: var(--max-width);
 		display: flex;
 		justify-content: center;
-		flex-wrap: wrap;
-		gap: 4rem;
+		align-items: center;
+		margin: 1rem 0 2rem 0;
 	}
 </style>
 

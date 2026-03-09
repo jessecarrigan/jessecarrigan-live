@@ -1,24 +1,31 @@
 ---
 import './hero.css';
-import Boton from '../atoms/Boton.astro';
 ---
 
 <section class="hero">
-
 	<div class="hero__container">
-		<div class="text__content">
-			<h1 class="hero__title color__gradiente">Jesse Carrigan</h1>
-			<p class="hero__text">
-				Artist, Composer, and Creative Technologist based in Eindhoven, Netherlands.
+		<div class="hero__text">
+			<span class="hero__label">Singer &middot; Songwriter &middot; Composer</span>
+			<h1 class="hero__name">Jesse<br/>Carrigan</h1>
+			<span class="hero__rule"></span>
+			<p class="hero__sub">
+				Artist, composer, and creative technologist.<br/>
+				Based in Eindhoven, Netherlands.
 			</p>
-			<Boton href="#about" texto="Learn more"/>
+			<a href="#about" class="hero__cta">Discover more</a>
 		</div>
-    <img
-		class="hero__img"
-		src="/img/jesse-carrigan.jpg"
-		alt="Jhon Doe"
-		width="384"
-    	height="384"
-	/>
+		<div class="hero__image-wrap">
+			<img
+				class="hero__img"
+				src="/img/jesse-carrigan.jpg"
+				alt="Jesse Carrigan"
+				width="600"
+				height="750"
+			/>
+		</div>
+	</div>
+
+	<div class="hero__scroll-indicator">
+		<span class="hero__scroll-line"></span>
 	</div>
 </section>

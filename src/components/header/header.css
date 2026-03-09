@@ -1,158 +1,124 @@
 .header {
-	display: flex;
-	width: 100%;
-	padding: 2rem;
-	justify-content: center;
-	align-items: center;
-	color: var(--on-primary);
 	position: fixed;
-	z-index: 3;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 100;
+	display: flex;
+	justify-content: center;
+	padding: 0 2.2rem;
 }
 
-.header .header__container {
+.header__container {
 	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	width: 100%;
 	max-width: var(--max-width);
-	justify-content: space-between;
-	background: #00000033;
-	backdrop-filter: blur(20px);
-	padding: 1rem 2rem;
-	border-radius: 14px;
-	height: auto;
-	min-height: 7rem;
-	border: 0.03px solid #7c39fd47;
-	flex-wrap: wrap;
+	background: rgba(247, 243, 236, 0.92);
+	backdrop-filter: blur(14px);
+	-webkit-backdrop-filter: blur(14px);
+	border-bottom: 1px solid var(--cream-dark);
+	padding: 1.8rem 3.6rem;
 }
 
-
-.header .profile .header__title {
-	font-size: var(--text-title);
-	font-weight: 600;
-	cursor: pointer;
-}
-
-.header .header__list {
+.header__list {
 	display: flex;
 	align-items: center;
-	justify-content: space-evenly;
-	gap: 2rem;
-	margin-right: 4.4rem;
+	gap: 3.6rem;
+	list-style: none;
 }
 
-.header .links {
-	display: flex;
-	gap: 22px;
-	font-size: var(--text-general);
-}
-
-.header .links a {
+.menu__link {
+	font-family: var(--font-body);
+	font-size: var(--text-sm);
+	font-weight: 400;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--ink-mid);
+	text-decoration: none;
 	position: relative;
+	transition: color 0.2s;
 }
 
-.header .links a::after {
-	position: absolute;
-	bottom: 0;
-	left: 0;
+.menu__link::after {
 	content: '';
+	position: absolute;
+	bottom: -2px;
+	left: 0;
 	width: 100%;
+	height: 1px;
+	background: var(--gold);
 	transform: scaleX(0);
-	transform-origin: 0;
-	height: 2px;
-	background: var(--primary);
-	transition: 0.35s transform;
+	transform-origin: left;
+	transition: transform 0.25s ease;
 }
 
-.header .links a:hover {
-	color: var(--primary-90);
+.menu__link:hover {
+	color: var(--ink);
 }
 
-.header .links a:hover::after {
-	transform: scale(1);
+.menu__link:hover::after {
+	transform: scaleX(1);
 }
-.icons {
-	display: none;
-}
+
 .menu__btn {
 	display: none;
 }
+
+/* Mobile */
 @media screen and (max-width: 768px) {
-	.header {
-		padding: 1rem;
-	}
-	.header .links {
-		position: fixed;
-		width: 100%;
-		top: calc(100vh - 16rem);
-		justify-content: center;
-		align-items: center;
-		right: 0;
-		align-self: center;
-		flex-direction: column;
-		pointer-events: none;
+	.header__container {
+		padding: 1.6rem 2rem;
 	}
 
-	.header .header__list {
-		margin-right: 0;
-		z-index: 2;
-		background: #1c0544;
-		justify-content: center;
-		align-items: center;
-		border-radius: 14px;
-		width: 100%;
-		padding: 0.8rem 1rem;
-		border: 1px solid #dc5898;
-		align-self: center;
-		opacity: 0;
-		pointer-events: none;
-	}
-	.links:focus-within .header__list {
-		opacity: 1;
-		pointer-events: all;
-	}
-	.links:focus-within .menu__btn {
-		opacity: 0;
-		pointer-events: none;
-	}
-	.links:not(:hover) .header__list {
-		opacity: 0;
-		pointer-events: none;
+	.links {
+		position: relative;
 	}
 
-	.icon__container {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
-	.icons {
-		display: block;
-	}
 	.menu__btn {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		padding: 0.5rem 2rem;
-		background: var(--hero-bg);
-		border-radius: 100px;
-		font-size: var(--text-x-large);
-		transition: 0.35s opacity;
-		max-width: -moz-max-content;
-		max-width: max-content;
-		color: #33f3c6;
-		position: absolute;
-		border: 2px solid #33f3c6;
+		background: none;
+		border: 1px solid var(--gold);
+		color: var(--gold);
+		font-family: var(--font-body);
+		font-size: var(--text-xs);
+		font-weight: 500;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		padding: 0.7rem 1.6rem;
+		cursor: pointer;
 		pointer-events: all;
-		animation: linear scroll-btn;
-		animation-timeline: scroll();
+		transition: opacity 0.2s;
 	}
-}
 
-@keyframes scroll-btn {
-	0%,
-	1% {
+	.header__list {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: rgba(247, 243, 236, 0.97);
+		border-top: 1px solid var(--cream-dark);
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		gap: 3rem;
+		padding: 1.8rem 2rem;
+		pointer-events: none;
 		opacity: 0;
+		z-index: 99;
+		transition: opacity 0.2s;
 	}
-	2% {
-		opacity: inherit;
 
+	.links:focus-within .header__list {
+		opacity: 1;
+		pointer-events: all;
+	}
+
+	.links:focus-within .menu__btn {
+		opacity: 0;
+		pointer-events: none;
 	}
 }

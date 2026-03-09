@@ -1,11 +1,11 @@
 export const mainMenu = [
-	{ link: '#', content: 'Home', icon: 'lucide:home' },
-	{ link: '#about', content: 'About', icon: 'octicon:person-24' },
-	{ link: '#portfolio', content: 'Portfolio', icon: 'carbon:portfolio' },
-	// { link: '#blog', content: 'Blog', icon: 'mdi:blog' },
+	{ link: '#about',     content: 'About',   icon: 'octicon:person-24'  },
+	{ link: '#credits',   content: 'Credits', icon: 'mdi:music'          },
+	{ link: '#portfolio', content: 'Listen',  icon: 'carbon:portfolio'   },
 ];
+
 export const menuBlog = [
-	{ link: '/', content: 'Home', icon: 'lucide:home' },
-	{ link: '/#about', content: 'About', icon: 'octicon:person-24' },
-	{ link: '/#portfolio', content: 'Portfolio', icon: 'carbon:portfolio' },
+	{ link: '/',           content: 'Home',    icon: 'lucide:home'        },
+	{ link: '/#about',     content: 'About',   icon: 'octicon:person-24'  },
+	{ link: '/#portfolio', content: 'Listen',  icon: 'carbon:portfolio'   },
 ];

@@ -1,28 +1,37 @@
 ---
-import Title from '../atoms/Title.astro';
-import SkillsOnTerminal from './components/skills-on-terminal/skillsOnTerminal.astro';
 import './skills.css';
 ---
 
-<section id="skills">
-	<!-- <SkillsOnTerminal /> -->
-	<div class="text-content">
-		<Title contenido="Credits" />
-		<img
-			class="skills__img"
-			src="https://upload.wikimedia.org/wikipedia/commons/3/3c/CBS_NFL_2021.svg"
-			alt="NFL on CBS"
-			width="800"
-			height="600"
-			style="background: white; padding: 1rem; border-radius: 8px;"
-		/>
-		<img
-			class="skills__img"
-			src="https://upload.wikimedia.org/wikipedia/commons/7/78/CBS_NCAA_2021.svg"
-			alt="NCAA on CBS"
-			width="800"
-			height="600"
-			style="background: white; padding: 1rem; border-radius: 8px;"
-		/>
+<section id="credits" class="credits">
+	<div class="credits__container">
+		<span class="credits__label">Credits</span>
+		<h2 class="credits__heading">Television</h2>
+		<span class="credits__rule"></span>
+		<p class="credits__sub">
+			Original vocal and instrumental compositions featured across CBS
+			Sports programming as well as other media outlets.
+			<div class="credits__logos">
+				<img
+					class="credits__logo"
+					src="https://upload.wikimedia.org/wikipedia/commons/3/3c/CBS_NFL_2021.svg"
+					alt="NFL on CBS"
+					width="220"
+					height="110"
+				/>
+				<img
+					class="credits__logo"
+					src="https://upload.wikimedia.org/wikipedia/commons/7/78/CBS_NCAA_2021.svg"
+					alt="NCAA on CBS"
+					width="220"
+					height="110"
+				/>
+				<img
+					src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/DMAX_Logo_16_05_2011.jpg/330px-DMAX_Logo_16_05_2011.jpg"
+					alt="DMAX"
+					width="220"
+					height="110"
+				/>
+			</div>
+		</p>
 	</div>
 </section>

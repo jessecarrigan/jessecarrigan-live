@@ -4,30 +4,27 @@ interface Props {
 	title: string;
 }
 const { title } = Astro.props;
-import Header from '../components/header/Header.astro';
-import { mainMenu } from '../components/data/menuData.js';
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Jesse Carrigan is an artist, composer, and creative technologist based in Eindhoven, Netherlands" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="description" content="Jesse Carrigan — artist, composer, and creative technologist. Soulful vocals, original songwriting, and instrumental compositions featured on CBS Sports." />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap"
 			rel="stylesheet"
 		/>
 		<script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
 		<title>{title}</title>
 	</head>
 	<body class="flex flex-col">
-
-			<slot/>
+		<slot/>
 	</body>
 </html>

@@ -2,11 +2,14 @@
 const { contenido, margin } = Astro.props;
 ---
 
-<h2 class="color__gradiente" style=`margin-bottom:${margin}` >{contenido}</h2>
+<h2 class="section-title" style={margin ? `margin-bottom:${margin}` : ''}>{contenido}</h2>
 
 <style>
-	h2 {
-		font-size: 5rem;
-		font-weight: 500;
+	.section-title {
+		font-family: var(--font-display);
+		font-size: var(--text-3xl);
+		font-weight: 400;
+		color: var(--ink);
+		line-height: 1.05;
 	}
 </style>

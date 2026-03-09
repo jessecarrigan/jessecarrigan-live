@@ -1,40 +1,40 @@
 ---
 import SocialIcons from '../SocialIcons.astro';
-import Title from '../atoms/Title.astro';
 import "./about.css"
-
-
 ---
 
 <section id="about" class="about">
 	<div class="about__container">
-		<img
-			class="about__img"
-			src="/img/jesse-working.jpg"
-			alt="Jesse Carrigan Working"
-		/>
+		<div class="about__image-wrap">
+			<img
+				class="about__img"
+				src="/img/jesse-working.jpg"
+				alt="Jesse Carrigan at work"
+				width="560"
+				height="680"
+			/>
+		</div>
 
 		<div class="about__content">
-			<Title margin="1rem" contenido="About Jesse	" />
+			<span class="about__label">About</span>
+			<h2 class="about__heading">Jesse Carrigan</h2>
+			<span class="about__rule"></span>
 			<p class="about__text">
-				Jesse Carrigan is an artist, composer, and technologist, 
+				Jesse Carrigan is an artist, composer, and technologist,
 				writing music about finding the light wherever you are.
 				His soulful vocals draw comparisons to Aaron Neville and
-				Allen Stone, while having a unique quality that stands apart.
+				Allen Stone, while carrying a quality that stands entirely apart.
 			</p>
 			<p class="about__text">
-				In another sphere, Jesse's vocal and instrumental rock 
-				compositons have been featured in the NFL on CBS, NCAA 
-				Basketball, and Course Record with Michael Breed.
+				Jesse's vocal and instrumental rock compositions have been
+				featured on the NFL on CBS, NCAA Basketball on CBS,
+				and <em>Course Record with Michael Breed.</em>
 			</p>
 			<p class="about__text">
-				Jesse is also a creative technologist serving as the co-founder
-				of <a href="https://cuemonic.com" target="_blank" rel="noopener noreferrer" style="text-decoration: underline;">
-				Cuemonic</a>, a metadata management solution for composers, artists,
-				and songwriters.
+				He also serves as co-founder of <a href="https://cuemonic.com" target="_blank" rel="noopener noreferrer" class="about__link">Cuemonic</a>,
+				a metadata management solution built for composers, artists, and songwriters.
 			</p>
-			<!-- <SocialIcons width="25" height="25"/> -->
+			<SocialIcons width="22" height="22"/>
 		</div>
 	</div>
-
 </section>

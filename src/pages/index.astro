@@ -1,12 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const REEL_URL    = ""; // YouTube/Vimeo embed URL — e.g. https://www.youtube.com/embed/VIDEO_ID
-const EMAIL       = "jesse@jessecarrigan.live";
-const DISCO_EMBED = "https://ithilien-songs.disco.ac/e/t/200252340?s=yYyuVxh3DjSROXdU8alzlOjN58c%3ARCRDvvBM&artwork=false&color=%234E98FF&theme=white";
-
-const hasReel  = REEL_URL.length > 0;
-const hasDisco = DISCO_EMBED.length > 0;
+const EMAIL = "jesse@jessecarrigan.live";
 ---
 
 <Layout title="Jesse Carrigan">
@@ -17,15 +12,21 @@ const hasDisco = DISCO_EMBED.length > 0;
       <h2 class="label">Composer for Media</h2>
     </header>
 
+    <div class="reel">
+      <iframe
+        src="https://player.vimeo.com/video/1186759705?badge=0&autopause=0&player_id=0&app_id=58479"
+        frameborder="0"
+        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        title="Jesse Carrigan - Portfolio Reel"
+      ></iframe>
+    </div>
+    <script src="https://player.vimeo.com/api/player.js"></script>
+
     <div class="split">
       <div class="split-left">
-        <p class="label">Listen</p>
-
-        {hasDisco ? (
-          <iframe id="disco-track-200252340" name="disco-track-200252340" allowfullscreen frameborder="0" class="disco-embed" src={DISCO_EMBED} width="480" height="235"></iframe> 
-        ) : (
-          <div class="embed-placeholder">Disco playlist — coming soon</div>
-        )}
+        <p class="label">About Me</p>
+        <p class="bio-text">Some of my earliest memories are music-related - our family piano, hearing the Star Wars theme for the first time, and dancing around to the song "Eye of the Tiger" by Survivor. I wrote my first song when I was about 3 (something about George Washington - if only I had a recording, because it was definitely a bop). Now I write music for film, tv, and media, finding moments to focus on with the spotlight that only the right sound can provide.</p>
       </div>
 
       <div class="split-right">
@@ -33,39 +34,16 @@ const hasDisco = DISCO_EMBED.length > 0;
       </div>
     </div>
 
-    <section class="bio">
-      <p class="label">About Me</p>
-      <p>Some of my earliest memories are music-related - our family piano, hearing the Star Wars theme for the first time, and dancing around to the song "Eye of the Tiger" by Survivor. I wrote my first song when I was about 3 (something about George Washington - if only I had a recording, because it was definitely a bop). Now I write music for film, tv, and media, finding moments to focus on with the spotlight that only the right sound can provide.</p>
-    </section>
-
     <footer class="contact">
       <h2 class="label">Contact</h2>
       <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
     </footer>
 
   </main>
-
-  {hasReel && (
-    <dialog id="reel-dialog" aria-label="Reel">
-      <button class="dialog-close" id="close-reel" aria-label="Close">×</button>
-      <iframe id="disco-track-200252340" name="disco-track-200252340" allowfullscreen frameborder="0" class="disco-embed" src={REEL_URL} width="480" height="235"></iframe>
-    </dialog>
-  )}
-
-  {hasReel && (
-    <script>
-      const btn = document.getElementById('play-btn');
-      const dialog = document.getElementById('reel-dialog') as HTMLDialogElement;
-      const closeBtn = document.getElementById('close-reel');
-      btn?.addEventListener('click', () => dialog?.showModal());
-      closeBtn?.addEventListener('click', () => dialog?.close());
-      dialog?.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
-    </script>
-  )}
 </Layout>
 
 <style>
-  /* ── Name ─────────────────────────────────────────── */
+  /* ── Header ───────────────────────────────────────── */
   .site-header {
     padding: 5.6rem 4.8rem 4.8rem;
     text-align: center;
@@ -80,10 +58,34 @@ const hasDisco = DISCO_EMBED.length > 0;
     color: var(--ink);
   }
 
+  .site-header .label {
+    margin-top: 1.2rem;
+  }
+
+  /* ── Reel ─────────────────────────────────────────── */
+  .reel {
+    position: relative;
+    padding-top: 56.25%;
+    background: var(--charcoal);
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .reel iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
   /* ── Split ────────────────────────────────────────── */
   .split {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    min-height: 44rem;
+    border-top: 1px solid var(--cream-dark);
   }
 
   .split-left {
@@ -92,15 +94,20 @@ const hasDisco = DISCO_EMBED.length > 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 2rem;
-    border-top: 1px solid var(--cream-dark);
+  }
+
+  .bio-text {
+    font-family: var(--font-body);
+    font-size: clamp(1.5rem, 1.6vw, 1.8rem);
+    font-weight: 400;
+    color: var(--ink-mid);
+    line-height: 1.8;
   }
 
   .split-right {
     overflow: hidden;
-    align-self: end;
-    height: 75rem;
   }
 
   .split-right img {
@@ -111,56 +118,15 @@ const hasDisco = DISCO_EMBED.length > 0;
     display: block;
   }
 
-  /* ── Disco embed ──────────────────────────────────── */
-  .split-left iframe {
-    border-radius: 4px;
-    width: 100%;
-  }
-
-  .embed-placeholder {
-    width: 100%;
-    height: 32rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px dashed var(--cream-dark);
-    border-radius: 4px;
-    font-family: var(--font-body);
-    font-size: var(--text-xs);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--ink-light);
-  }
-
-  /* ── Bio ──────────────────────────────────────────── */
-  .bio {
-    padding: 8rem 3.2rem;
-    max-width: 68rem;
-    margin: 0 auto;
-    text-align: center;
-    border-top: 1px solid var(--cream-dark);
-  }
-
-  .bio p {
-    font-family: var(--font-body);
-    font-size: clamp(1.6rem, 1.8vw, 2rem);
-    font-weight: 400;
-    color: var(--ink-mid);
-    line-height: 1.8;
-  }
-
   /* ── Contact ──────────────────────────────────────── */
   .contact {
     padding: 4rem 2.4rem 6rem;
     text-align: center;
     border-top: 1px solid var(--cream-dark);
-  }
-
-  .contact p {
-    font-family: var(--font-body);
-    font-size: var(--text-xs);
-    color: var(--ink-light);
-    margin-bottom: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
   }
 
   .contact a {
@@ -176,48 +142,6 @@ const hasDisco = DISCO_EMBED.length > 0;
     color: var(--gold);
   }
 
-  /* ── Reel modal ───────────────────────────────────── */
-  dialog {
-    border: none;
-    background: var(--charcoal);
-    padding: 0;
-    width: min(90vw, 96rem);
-    aspect-ratio: 16 / 9;
-    border-radius: 4px;
-    position: relative;
-  }
-
-  dialog::backdrop {
-    background: rgba(28, 26, 23, 0.88);
-    backdrop-filter: blur(6px);
-  }
-
-  dialog iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block;
-  }
-
-  .dialog-close {
-    position: absolute;
-    top: -4rem;
-    right: 0;
-    background: none;
-    border: none;
-    color: var(--white);
-    font-size: 2.8rem;
-    cursor: pointer;
-    line-height: 1;
-    opacity: 0.7;
-    transition: opacity 0.2s ease;
-    z-index: 1;
-  }
-
-  .dialog-close:hover {
-    opacity: 1;
-  }
-
   /* ── Mobile ───────────────────────────────────────── */
   @media (max-width: 720px) {
     .site-header {
@@ -230,13 +154,12 @@ const hasDisco = DISCO_EMBED.length > 0;
     }
 
     .split-right {
-      height: 56vw;
+      height: 72vw;
       order: -1;
     }
 
     .split-left {
       padding: 4rem 2.4rem;
-      gap: 2rem;
     }
   }
 </style>

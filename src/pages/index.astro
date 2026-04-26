@@ -1,23 +1,242 @@
 ---
-import About from '../components/About/About.astro';
-import BlogHome from '../components/BlogHome.astro';
-import { mainMenu } from '../components/data/menuData';
-import Footer from '../components/Footer/Footer.astro';
-import Header from '../components/header/Header.astro';
-import Hero from '../components/hero/Hero.astro';
-import Portfolio from '../components/Portfolio.astro';
-import Skills from '../components/skills/Skills.astro';
 import Layout from '../layouts/Layout.astro';
+
+const REEL_URL    = ""; // YouTube/Vimeo embed URL — e.g. https://www.youtube.com/embed/VIDEO_ID
+const EMAIL       = "jesse@jessecarrigan.live";
+const DISCO_EMBED = "https://ithilien-songs.disco.ac/e/t/200252340?s=yYyuVxh3DjSROXdU8alzlOjN58c%3ARCRDvvBM&artwork=false&color=%234E98FF&theme=white";
+
+const hasReel  = REEL_URL.length > 0;
+const hasDisco = DISCO_EMBED.length > 0;
 ---
 
-<Layout title="Jesse Carrigan | Artist and Composer">
-	<Header origin={mainMenu} />
-	<main class="self-center w-full">
-		<Hero />
-		<About />
-		<Skills />
-		<Portfolio />
-		<!-- <BlogHome /> -->
-	</main>
-	<Footer/>
+<Layout title="Jesse Carrigan">
+  <main>
+
+    <header class="site-header">
+      <h1 class="name">Jesse Carrigan</h1>
+      <h2 class="label">Composer for Media</h2>
+    </header>
+
+    <div class="split">
+      <div class="split-left">
+        <p class="label">Listen</p>
+
+        {hasDisco ? (
+          <iframe id="disco-track-200252340" name="disco-track-200252340" allowfullscreen frameborder="0" class="disco-embed" src={DISCO_EMBED} width="480" height="235"></iframe> 
+        ) : (
+          <div class="embed-placeholder">Disco playlist — coming soon</div>
+        )}
+      </div>
+
+      <div class="split-right">
+        <img src="/img/jesse-carrigan.jpg" alt="Jesse Carrigan" />
+      </div>
+    </div>
+
+    <section class="bio">
+      <p class="label">About Me</p>
+      <p>Some of my earliest memories are music-related - our family piano, hearing the Star Wars theme for the first time, and dancing around to the song "Eye of the Tiger" by Survivor. I wrote my first song when I was about 3 (something about George Washington - if only I had a recording, because it was definitely a bop). Now I write music for film, tv, and media, finding moments to focus on with the spotlight that only the right sound can provide.</p>
+    </section>
+
+    <footer class="contact">
+      <h2 class="label">Contact</h2>
+      <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+    </footer>
+
+  </main>
+
+  {hasReel && (
+    <dialog id="reel-dialog" aria-label="Reel">
+      <button class="dialog-close" id="close-reel" aria-label="Close">×</button>
+      <iframe id="disco-track-200252340" name="disco-track-200252340" allowfullscreen frameborder="0" class="disco-embed" src={REEL_URL} width="480" height="235"></iframe>
+    </dialog>
+  )}
+
+  {hasReel && (
+    <script>
+      const btn = document.getElementById('play-btn');
+      const dialog = document.getElementById('reel-dialog') as HTMLDialogElement;
+      const closeBtn = document.getElementById('close-reel');
+      btn?.addEventListener('click', () => dialog?.showModal());
+      closeBtn?.addEventListener('click', () => dialog?.close());
+      dialog?.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+    </script>
+  )}
 </Layout>
+
+<style>
+  /* ── Name ─────────────────────────────────────────── */
+  .site-header {
+    padding: 5.6rem 4.8rem 4.8rem;
+    text-align: center;
+    background: var(--cream);
+  }
+
+  .name {
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 8vw, 9.6rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+
+  /* ── Split ────────────────────────────────────────── */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .split-left {
+    background: var(--cream);
+    padding: 5.6rem 4.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 2rem;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .split-right {
+    overflow: hidden;
+    align-self: end;
+    height: 75rem;
+  }
+
+  .split-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  /* ── Disco embed ──────────────────────────────────── */
+  .split-left iframe {
+    border-radius: 4px;
+    width: 100%;
+  }
+
+  .embed-placeholder {
+    width: 100%;
+    height: 32rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed var(--cream-dark);
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+
+  /* ── Bio ──────────────────────────────────────────── */
+  .bio {
+    padding: 8rem 3.2rem;
+    max-width: 68rem;
+    margin: 0 auto;
+    text-align: center;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .bio p {
+    font-family: var(--font-body);
+    font-size: clamp(1.6rem, 1.8vw, 2rem);
+    font-weight: 400;
+    color: var(--ink-mid);
+    line-height: 1.8;
+  }
+
+  /* ── Contact ──────────────────────────────────────── */
+  .contact {
+    padding: 4rem 2.4rem 6rem;
+    text-align: center;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .contact p {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    color: var(--ink-light);
+    margin-bottom: 0.8rem;
+  }
+
+  .contact a {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    color: var(--ink-light);
+    transition: color 0.2s ease;
+  }
+
+  .contact a:hover {
+    color: var(--gold);
+  }
+
+  /* ── Reel modal ───────────────────────────────────── */
+  dialog {
+    border: none;
+    background: var(--charcoal);
+    padding: 0;
+    width: min(90vw, 96rem);
+    aspect-ratio: 16 / 9;
+    border-radius: 4px;
+    position: relative;
+  }
+
+  dialog::backdrop {
+    background: rgba(28, 26, 23, 0.88);
+    backdrop-filter: blur(6px);
+  }
+
+  dialog iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  .dialog-close {
+    position: absolute;
+    top: -4rem;
+    right: 0;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 2.8rem;
+    cursor: pointer;
+    line-height: 1;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+    z-index: 1;
+  }
+
+  .dialog-close:hover {
+    opacity: 1;
+  }
+
+  /* ── Mobile ───────────────────────────────────────── */
+  @media (max-width: 720px) {
+    .site-header {
+      padding: 4rem 2.4rem 3.2rem;
+    }
+
+    .split {
+      grid-template-columns: 1fr;
+      min-height: unset;
+    }
+
+    .split-right {
+      height: 56vw;
+      order: -1;
+    }
+
+    .split-left {
+      padding: 4rem 2.4rem;
+      gap: 2rem;
+    }
+  }
+</style>

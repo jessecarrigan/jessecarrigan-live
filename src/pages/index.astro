@@ -13,33 +13,51 @@ const EMAIL = "jesse@jessecarrigan.live";
     </header>
 
     <div class="reel">
-      <button id="reel-play" class="reel-play" aria-label="Play portfolio reel" type="button">
-        <svg class="icon icon-play" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M8 5v14l11-7z" fill="currentColor"/>
-        </svg>
-        <svg class="icon icon-pause" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M6 5h4v14H6zM14 5h4v14h-4z" fill="currentColor"/>
-        </svg>
-      </button>
+      <div class="reel-controls">
+        <button id="reel-play" class="reel-play" aria-label="Play portfolio reel" type="button" disabled>
+          <svg class="icon icon-play" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M8 5v14l11-7z" fill="currentColor"/>
+          </svg>
+          <svg class="icon icon-pause" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 5h4v14H6zM14 5h4v14h-4z" fill="currentColor"/>
+          </svg>
+        </button>
+        <div id="reel-waveform" class="reel-waveform"></div>
+      </div>
       <p class="reel-label">Portfolio Reel</p>
-      <audio id="reel-audio" src="/audio/reel.mp3" preload="metadata"></audio>
     </div>
 
     <script>
-      const btn = document.getElementById('reel-play');
-      const audio = document.getElementById('reel-audio') as HTMLAudioElement | null;
-      if (btn && audio) {
+      import WaveSurfer from 'wavesurfer.js';
+
+      const btn = document.getElementById('reel-play') as HTMLButtonElement | null;
+      const container = document.getElementById('reel-waveform');
+
+      if (btn && container) {
+        const ws = WaveSurfer.create({
+          container,
+          url: '/audio/reel.mp3',
+          waveColor: '#7A7168',
+          progressColor: '#C4A46B',
+          cursorColor: '#F7F3EC',
+          cursorWidth: 1,
+          barWidth: 2,
+          barGap: 1,
+          barRadius: 1,
+          height: 72,
+          normalize: true,
+        });
+
         const setPlaying = (playing: boolean) => {
           btn.classList.toggle('playing', playing);
           btn.setAttribute('aria-label', playing ? 'Pause portfolio reel' : 'Play portfolio reel');
         };
-        btn.addEventListener('click', () => {
-          if (audio.paused) audio.play();
-          else audio.pause();
-        });
-        audio.addEventListener('play', () => setPlaying(true));
-        audio.addEventListener('pause', () => setPlaying(false));
-        audio.addEventListener('ended', () => setPlaying(false));
+
+        btn.addEventListener('click', () => ws.playPause());
+        ws.on('ready', () => { btn.disabled = false; });
+        ws.on('play', () => setPlaying(true));
+        ws.on('pause', () => setPlaying(false));
+        ws.on('finish', () => setPlaying(false));
       }
     </script>
 
@@ -86,7 +104,7 @@ const EMAIL = "jesse@jessecarrigan.live";
   .reel {
     background: var(--charcoal);
     border-top: 1px solid var(--cream-dark);
-    padding: 8rem 2.4rem;
+    padding: 8rem 4.8rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -94,9 +112,23 @@ const EMAIL = "jesse@jessecarrigan.live";
     gap: 2.4rem;
   }
 
+  .reel-controls {
+    display: flex;
+    align-items: center;
+    gap: 3.2rem;
+    width: 100%;
+    max-width: 96rem;
+  }
+
+  .reel-waveform {
+    flex: 1;
+    min-width: 0;
+  }
+
   .reel-play {
-    width: 9.6rem;
-    height: 9.6rem;
+    flex: 0 0 auto;
+    width: 8rem;
+    height: 8rem;
     border-radius: 50%;
     border: 1px solid var(--gold-light);
     background: transparent;
@@ -106,19 +138,24 @@ const EMAIL = "jesse@jessecarrigan.live";
     align-items: center;
     justify-content: center;
     padding: 0;
-    transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease, border-color 0.25s ease;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease, border-color 0.25s ease, opacity 0.25s ease;
   }
 
-  .reel-play:hover {
+  .reel-play:hover:not(:disabled) {
     background: var(--gold);
     color: var(--white);
     border-color: var(--gold);
     transform: scale(1.04);
   }
 
+  .reel-play:disabled {
+    cursor: wait;
+    opacity: 0.45;
+  }
+
   .reel-play .icon {
-    width: 3.6rem;
-    height: 3.6rem;
+    width: 3rem;
+    height: 3rem;
     display: block;
   }
 
@@ -206,6 +243,15 @@ const EMAIL = "jesse@jessecarrigan.live";
   @media (max-width: 720px) {
     .site-header {
       padding: 4rem 2.4rem 3.2rem;
+    }
+
+    .reel {
+      padding: 5.6rem 2.4rem;
+    }
+
+    .reel-controls {
+      flex-direction: column;
+      gap: 2.4rem;
     }
 
     .split {

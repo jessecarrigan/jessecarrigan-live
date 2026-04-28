@@ -1,0 +1,94 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Add Vimeo entries here. `id` is the numeric Vimeo video ID.
+const videos: { id: string; title: string }[] = [
+  { id: '1187192453', title: 'Aflac - Stunt Duck (Rescore)' },
+  { id: '1187192479', title: 'Amazon - Holidays Joy Ride (Rescore)' },
+  { id: '1187192451', title: 'Dell - Technologies + Trains (Rescore)' },
+  { id: '1187192452', title: 'Pepsi - All The Best Moments (Rescore)' },
+  { id: '1187192435', title: 'Mercedes - E-Class (Rescore)' },
+  { id: '1187192416', title: 'Apple - Design is how it works (Rescore)' },
+  { id: '1187192429', title: 'Patagonia - Buy Less, Demand More (Rescore)' },
+  { id: '1187192415', title: 'BMW - X1, X3, X5 (Rescore)' },
+  { id: '1187192417', title: 'RFSU - Screw the Past (Rescore)' },
+];
+
+const embedUrl = (id: string) =>
+  `https://player.vimeo.com/video/${id}?badge=0&autopause=0&player_id=0&app_id=58479`;
+---
+
+<Layout title="Rescores — Jesse Carrigan" subtitle="Rescores — Reimagined Scenes">
+  <main>
+
+    <section class="grid">
+      {videos.map(({ id, title }) => (
+        <figure class="card">
+          <div class="frame">
+            <iframe
+              src={embedUrl(id)}
+              frameborder="0"
+              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              title={title}
+            ></iframe>
+          </div>
+          <figcaption>{title}</figcaption>
+        </figure>
+      ))}
+    </section>
+
+  </main>
+  <script src="https://player.vimeo.com/api/player.js"></script>
+</Layout>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+    padding: 5.6rem 4.8rem 8rem;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .frame {
+    position: relative;
+    padding-top: 56.25%;
+    background: var(--charcoal);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .frame iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  figcaption {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+  }
+
+  @media (max-width: 720px) {
+    .grid {
+      grid-template-columns: 1fr;
+      gap: 3.2rem;
+      padding: 4rem 2.4rem 6rem;
+    }
+  }
+</style>

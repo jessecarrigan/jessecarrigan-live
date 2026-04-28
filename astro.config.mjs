@@ -9,5 +9,11 @@ export default defineConfig({
   devToolbar: {
     enabled: false
   },
-  integrations: [react(), tailwind(), sitemap()]
+  integrations: [
+    react(),
+    tailwind(),
+    sitemap({
+      filter: (page) => !page.includes('/rescores'),
+    }),
+  ]
 });
